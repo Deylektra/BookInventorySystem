@@ -1,6 +1,12 @@
 //Julianne Sem
-//Assignment 3
-//2017-12-06
+//Book inventory
+//CS 145
+
+/*
+  BookInventory manages the info from the two inputted text files (Books and Transactions).
+  This program prints out the output while using the classes Book, BackOrder, and Total to keep track of
+  and manipulate the data in the text files.
+*/
 
 import java.util.*;
 import java.io.*;
@@ -21,17 +27,17 @@ public class BookInventory{
           Scanner backOrders = new Scanner(transactionFile);
           processBooks(book);
           processTransactions(backOrders);
+          totalValue(revenue);
     }
-    totalValue(revenue);
   }
 
-  /*
-  Checks that there are only 2 command line arguments and that the files
-  inputed are readable, if it's readable, it returns true
-  */
+
+  //Checks that there are only 2 command line arguments and that the files
+  //inputed are readable, if it's readable, it returns true
+
   public static boolean handleArguments(String[] args){
       if(args.length != 2){
-        System.out.println("Wrong number of command line arguments");//throw exception
+        System.out.println("ERROR: Wrong number of command line arguments, need Book text file and Transactions text file");
         return false;
       }
      bookFile = new File(args[0]);
@@ -70,13 +76,19 @@ public class BookInventory{
   public static void addBook(Book currentBook){
     if(inventory.isEmpty()){
       inventory.add(currentBook);
-      System.out.println("Book: " + currentBook + " Price: " + currentBook.getPrice() + ", Stock: " + currentBook.getStock() + ".");
+      System.out.print("Book: " + currentBook + " Price: ");
+      System.out.printf("%.2f", currentBook.getPrice());
+      System.out.println(", Stock: " + currentBook.getStock() + ".");
+
       return;
     }
     int index = findBook(currentBook.getIsbn());
     if(index == -1){
        inventory.add(currentBook);
-       System.out.println("Book: " + currentBook + " Price: " + currentBook.getPrice() + ", Stock: " + currentBook.getStock() + ".");
+       System.out.print("Book: " + currentBook + " Price: ");
+       System.out.printf("%.2f", currentBook.getPrice());
+       System.out.println(", Stock: " + currentBook.getStock() + ".");
+
     }else{
        Book current = inventory.get(index);
        current.changeStock(currentBook.getStock());
@@ -135,7 +147,10 @@ public class BookInventory{
       for(int i = 0; i < inventory.size(); i++){
           Book current = inventory.get(i);
           int index = searchBackOrders(current.getIsbn());
-          System.out.println("Book: " + current + " Price: " + current.getPrice() + ", Stock: " + current.getStock() + ".");
+          System.out.print("Book: " + current + " Price: ");
+          System.out.printf("%.2f", current.getPrice());
+          System.out.println(", Stock: " + current.getStock() + ".");
+
           BackOrder bookBackOrders;
           for(int k = 0; k < ListOfBackOrders.size(); k++){
               bookBackOrders = ListOfBackOrders.get(k);
