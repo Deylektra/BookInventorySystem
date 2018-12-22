@@ -1,6 +1,8 @@
 //Julianne Sem
-//lab 6
-//2017-11-28
+//CS 145
+/*
+   This program is a singly linked list that I made in CS 145.
+*/
 
 public class CS145LinkedList<E> {
 
