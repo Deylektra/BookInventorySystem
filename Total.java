@@ -1,3 +1,5 @@
+//Julianne Sem
+//CS 145
 //This class is used to find the revenue of books ordered
 public class Total{
   private double revenue;
